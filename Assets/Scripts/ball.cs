@@ -29,7 +29,14 @@ public class ball : MonoBehaviour {
 		if (collision.gameObject.name == "wall_left" || collision.gameObject.name == "wall_right") {
 			SoundManager.Instance.PlayOneShot (SoundManager.Instance.hit);
 
-			//TODO update score
+			if (collision.gameObject.name == "wall_left") {
+				string txt = GameObject.Find ("p2").GetComponent<UnityEngine.UI.Text> ().text;
+				GameObject.Find ("p2").GetComponent<UnityEngine.UI.Text> ().text = (int.Parse(txt) + 1).ToString();
+			}
+			else {
+				string txt = GameObject.Find ("p1").GetComponent<UnityEngine.UI.Text> ().text;
+				GameObject.Find ("p1").GetComponent<UnityEngine.UI.Text> ().text = (int.Parse(txt) + 1).ToString();
+			}
 
 			transform.position = new Vector2 (0, 0);
 		}
